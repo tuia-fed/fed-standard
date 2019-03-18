@@ -1,7 +1,7 @@
-* [简介](README.md)
+* [首页](README)
 
-* [命名](name.md)
+* [命名](name)
 
-* [JavaScript](javascript.md)
+* [JavaScript](javascript)
 
-* [React](react.md)
+* [React](react)
