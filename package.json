@@ -1,0 +1,14 @@
+{
+  "name": "fed-standard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tuia-fed/fed-standard",
+  "author": "IronL <lrironsora@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "docsify serve ./docs"
+  },
+  "devDependencies": {
+    "docsify-cli": "^4.3.0"
+  }
+}
