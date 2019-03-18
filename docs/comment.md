@@ -20,6 +20,10 @@
 @type {boolean} 布尔类型
 @type {number} 数字类型
 @type {string} 字符串类型
+@type {null} null类型(一般不会单独作为类型，与其它类型组合)
+@type {undefined} undefined类型，同上
+@type {never} 表示代码永远不会返回，通常是代码必定会抛出一个错误或者死循环
+// 组合类型
 @type {number[]} 数字组成的数组，在类型后加`[]`即可表示这个类型的数组
 @type {Array<number>} 数字组成数组的另一种形式
 @type {[number, string, boolean]} 元祖，这个类型的第一个元素是number，第二个是string, 第三个是boolean
