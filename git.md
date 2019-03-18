@@ -15,7 +15,8 @@ git commit -am 'I have a big dick'
 **但这样的 commit 信息会在未来寻找过去这个改动的意图时非常困难**
 
 **commit message 应该清晰明了，说明本次提交的目的**
-我们代码合并到`develop`或者`master`分支上时，必须启用 squash commit，让我们在其它分支上做的更改压扁为一条更改，合并到对应分支上，这样有助于我们之后更加清晰地排查问题。请各条线项目负责人在 gitlab 的配置中开启 squash commit。
+
+我们代码合并到`develop`或者`master`分支上时，必须启用 squash commit，让我们在其它分支上做的更改压扁为一条更改，合并到对应分支上，这样有助于我们之后更加清晰地排查问题。请各条线项目负责人在 gitlab 的配置中开启 `squash commit`。
 
 **对于合并到 master 和 develop 分支的代码，merge request 的信息请严格按照下面的规范。**，其它分支阶段性的暂存的改动不硬性要求
 
@@ -49,3 +50,5 @@ Type 只能为下面的类型
 对本次 commit 的详细描述，可以拆分成多行，使用 Markdown 的列表语法
 
 特别地，**应该说明代码变动的动机，以及与以前行为的对比**
+
+<!-- TODO: 补充例子 -->
