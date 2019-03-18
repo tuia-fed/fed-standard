@@ -1,7 +1,6 @@
-* [首页](README)
-
-* [命名](name)
-
-* [JavaScript](javascript)
-
-* [React](react)
+- [首页](./README.md)
+- [命名](./name.md)
+- [JavaScript](./javascript.md)
+- [React](./react.md)
+- [注释](./comment.md)
+- [异步](./asynchronous.md)
