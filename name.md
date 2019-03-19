@@ -448,7 +448,7 @@ handleSummaryExport = () => {};
 
 ### 修改资源
 
-`update` + 资源吗
+`update` + 资源名
 
 ```js
 @action updateUser() {
