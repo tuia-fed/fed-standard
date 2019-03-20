@@ -100,8 +100,9 @@ Mobx 的官方文档中将 store 分为两种，*用户界面状态的 store*和
 
 #### 性能更优
 因为`mobx-react`的机制，Observer只会在它依赖的数据更新时进行它的调和算法计算虚拟 DOM 变化，其它情况下不会重新计算。而仅靠React，没有PureComponent，在state改变时，所有组件都会进行调和，据Mobx官方文档所言，React在渲染大型数据集时的调和非常糟糕。
+可以认为observer高阶函数重新实现了`shouldComponentUpdate`生命周期，避免了组件很多不必要的渲染
 
-另外，React的无状态组件的性能能比有状态的类组件快7% ~ 45%
+另外，在React16中无状态组件比有状态的类组件运行速度更快。
 
-### 一个例子
+### 一个TODO List的例子
 TODO
