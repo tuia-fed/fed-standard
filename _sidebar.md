@@ -3,7 +3,7 @@
 - [JavaScript](./javascript.md)
 - [React](./react.md)
 - [注释](./comment.md)
-- [枚举](./enum.md)
+- [枚举与常量](./enum.md)
 - [异步](./asynchronous.md)
 - [ES6 实践](./es6.md)
 - [Git 提交信息](./git.md)
