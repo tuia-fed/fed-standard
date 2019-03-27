@@ -201,16 +201,58 @@ const xAxisData = Object.keys(response.data);
 
 ## `Promise`
 
-见[此处](http://es6.ruanyifeng.com/?search=%E8%A7%A3%E6%9E%84&x=0&y=0#docs/promise)，建议每个同学从头到尾看一遍。不要写出 Promise 里套 Promise 的垃圾代码。
+见[此处](http://es6.ruanyifeng.com/?search=%E8%A7%A3%E6%9E%84&x=0&y=0#docs/promise)，建议每个同学从头到尾看一遍。
 
 理解 Promise 是使用更加高级的`async/awit`的基础
 
 下面展示业务代码里 Promise 的误用。
 
-```js
-// Promise中套Promise，造成回调地狱
+### Promise 嵌套
 
+[出处](http://gitlab2.dui88.com/tuia-frontend/tuia-bigData-frontend/reports-node/blob/9b233c789fd7fb3c794525f077ba5d54a0be7ef4/new-reports-node/src/pages/tuia/stores/datapanel/dashboard/index.js#L198)
+
+```js
+
+// Promise中套Promise，造成回调地狱
+@action
+  addPanel = (params) => {
+    return new Promise((resolve) => {
+      common.fetch('/dashboard/save', params, 'post', { isJson: true }).then(res => {
+        if (res.success) {
+          common.handleSuccess('操作成功');
+          setTimeout(() => {
+            this.getPanelList().then(() => {
+              this.defaultDashboard = res.data;
+              this.getPanelItem({ dashboardId: res.data });
+            });
+          }, 300);
+          resolve();
+        } else {
+          message.error(res.desc, 3);
+        }
+      });
+    });
+  }
+```
+
+### 已有 Promise 对象的情况下去 new 了一个新的 Promise
+
+[出处](http://gitlab2.dui88.com/tuia-frontend/tuia-bigData-frontend/reports-node/blob/875574152c352627dbfe9c0474e18ac9d8068417/mobile/src/containers/chart-center/store/index.js#L15)
+
+```jsx
 // 已有Promise对象的情况下去new 一个新的Promise然后resolve旧的Promise的结果
+  // 获取推啊报表
+  @action
+  getDataList = () => {
+    const promise = new Promise((resolve, reject) => {
+      common.fetch('/chart/category/list', this.params, 'get').then(res => {
+        this.dataList = res.data.list;
+        resolve(res);
+      });
+    });
+    return promise;
+  };
+
 ```
 
 ## Async/await
