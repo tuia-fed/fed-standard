@@ -114,7 +114,7 @@ if (starBucksCupSize.include('large')) {
 ```js
 // 此处是一个填充2位的小时的例子
 // 过去我们得这么写，如果是更多位数的填充需要写循环，代码非常不直观。
-const hourString = hour >= 10 ? `0${hour}` : hour.toString();
+const hourString = hour < 10 ? `0${hour}` : hour.toString();
 
 // 现在用padStart可以非常轻松地在头部填充0
 const hourString = hour.toString().padStart(2, '0'); // 不足2位时，填充0到2位

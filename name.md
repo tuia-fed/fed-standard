@@ -413,7 +413,7 @@ handleSummaryExport = () => {};
 `fetch` + 资源名 + `Chart`
 
 ```js
-@action fetchRealTimeData() {
+@action fetchMediaRealTimeChart() {
 
 }
 ```

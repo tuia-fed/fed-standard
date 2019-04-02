@@ -81,19 +81,20 @@ Mobx 的官方文档中将 store 分为两种，*用户界面状态的 store*和
 
 **综上所述，所有store数据的消费者，都应该成为Observer**
 
-那么这样的情况下的数据流，只有扁平的2层。
+那么这样的情况下的数据流，只有扁平的2-3层。
 
 第一层为领域Store，统一掌管业务中的一切状态和对应时机的状态处理逻辑。其中的状态们是observable的。
 第二层为组件，各种拆分得足够细小的组件，他们消费领域store中的数据，每个都是store的observer。
+第三层为纯粹的UI组件，比如Ant design等各种组件库的组件，项目内组件库的组件，当前业务可复用的组件逻辑。
 
-**无论视图的嵌套层次有多深，数据流的结构永远是扁平的2层**
+**无论视图的嵌套层次有多深，数据流的结构永远是扁平的2~3层**
 
 ### 我们再来看看React + Redux的设计中的三个问题
 #### 展示组件会嵌套展示组件，那么外层的展示组件需要继续将事件的回调和state往下传递
-显然，数据流只有2层，并没有任何传参问题。
+显然，数据流只有2~3层，传参问题缓解了很多。
 
 #### 给展示组件的props可能会有很多项，JSX中props的列表会变得比较长
-不需要父组件给子组件传props，因为子组件的props是通过`mobx-react`的`inject`方法自动注入到Observer中
+第二层的observer组件, 不需要父组件给子组件传props，因为子组件的props是通过`mobx-react`的`inject`方法自动注入到Observer中。过去这层通过props传值导致了大量的props。
 
 #### 如果使用容器组件的state作为状态，大量的handle函数也会被写在容器组件中，也会导致组件的代码过长。
 这个问题无法完全解决，因为业务代码带来的代码量是无法避免的。但有所缓解，因为所有的逻辑都在store中，比起container中既有部分视图又有大量逻辑的情况，做了代码拆分。
@@ -104,9 +105,10 @@ Mobx 的官方文档中将 store 分为两种，*用户界面状态的 store*和
 
 #### 性能更优
 因为`mobx-react`的机制，Observer只会在它依赖的数据更新时进行它的调和算法计算虚拟 DOM 变化，其它情况下不会重新计算。而仅靠React，没有PureComponent，在state改变时，所有组件都会进行调和，据Mobx官方文档所言，React在渲染大型数据集时的调和非常糟糕。
-可以认为observer高阶函数重新实现了`shouldComponentUpdate`生命周期，避免了组件很多不必要的渲染
+observer高阶函数重新实现了`shouldComponentUpdate`生命周期，避免了组件很多不必要的渲染
 
-另外，在React16中无状态组件比有状态的类组件运行速度更快。
+另外，在React16中无状态组件比有状态的类组件运行速度更快。因此如非有必要（比如必须引用ref），强烈建议用函数式组件编写`observer`的业务代码。
 
-### 一个TODO List的例子
-TODO
+完整的例子可以见元数据管理系统的数据补录模块
+
+http://gitlab2.dui88.com/bigdata/metadatatool/blob/51581d71f01d3a7f1acad386e9190c2d5d768a99/frontend-new/src/containers/data-tool/DataCollection/index.jsx
