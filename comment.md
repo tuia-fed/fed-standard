@@ -3,7 +3,9 @@
 > 程序员最讨厌是四件事情：写注释、写文档、看到别人不写注释、看到别人不写文档。
 
 注释是代码中不影响代码运行的一段提示。它的作用是，以少量的时间成本换来后期大量的可维护性上的收益。
-****
+
+---
+
 ## Jsdoc
 
 基本的注释有`//`或者`/* */`，这是最基本的。此处要讲的注释类型叫做`jsdoc`，它是一种**文档注释**。比起普通注释，它能通过类似`@param`这样的 tag，告诉其它人和编辑器(`Vscode, sublime, atom, WebStorm等等`)你的代码中的额外信息，比如显式地指定一个变量的类型。而且，它的注释是支持 Markdown 格式的。在 Vscode 中，键入`/**`并按下回车，便能生成 Jsdoc 的注释块。
@@ -321,15 +323,16 @@ export default function readExcelFile(file) {
 ### 公共组件（必须）
 
 必须的注释
+
 - 组件的功能
 - 组件的参数
 - 作者
 
 可选的
+
 - 组件的例子
 
-
-``` jsx
+```jsx
 /**
  * 多选按钮组
  * @author Iron <lujianwei@duiba.com.cn>
@@ -413,96 +416,47 @@ function SelectButtonGroup({
 }
 
 export default SelectButtonGroup;
-
-
 ```
+
 ### 业务组件（必须）
 
-``` jsx
+```jsx
+/**
+ * @typedef ComparableChartIndexModalProps
+ * @property {boolean} visible 弹窗可见性
+ * @property {Function} onCloseIndexDetailModal 关闭弹窗时的回调
+ */
 
 /**
- * 规则集编辑弹层组件
- * @param {object} props
- * @param {boolean} props.visible 弹窗可见性
- * @param {boolean} props.commitLoading
- * @param {object[]} props.ruleList 规则列表
- * @param {AlertRuleCombinationType} props.ruleCombination 规则组合方式
- * @param {Function} props.onOk 确定点击时的回调
- * @param {Function} props.onCancel 取消时的回调
- * @param {boolean} props.validateLoading 校验是否在加载中
- * @param {Function} props.onValidateRuleSet 校验规则集时的回调
- * @param {Function} props.onAppendRule 添加新规则时的回调
- * @param {Function} props.onRuleChange 规则改变时的回调
- * @param {Function} props.onRuleDelete 规则被删除时的回调
- * @param {Function} props.onCombinationChange 组合条件改变时的回调
+ * 可比较属性点击后的带折线图的弹层
+ * @type {React.FunctionComponent<ComparableChartIndexModalProps>}
  */
-function RuleSetEditModal({
-  visible,
-  ruleList,
-  commitLoading,
-  ruleCombination,
-  onOk,
-  validateLoading,
-  onValidateRuleSet,
-  onCancel,
-  onAppendRule,
-  onRuleChange,
-  onRuleDelete,
-  onCombinationChange
-}) {
-  const footer = (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <div>
-        <Button
-          type="primary"
-          loading={validateLoading}
-          onClick={onValidateRuleSet}
-        >
-          合理性校验
-        </Button>
-      </div>
-      <div>
-        <Button onClick={onCancel}>取消</Button>
-        <Button type="primary" loading={commitLoading} onClick={onOk}>
-          确定
-        </Button>
-      </div>
-    </div>
-  );
-
+const ComparableChartIndexModal = ({ visible, onCloseIndexDetailModal }) => {
   return (
     <Modal
       visible={visible}
-      title="报警规则修改"
-      width="824px"
-      onCancel={onCancel}
-      maskClosable={false}
-      footer={footer}
+      width={724}
+      footer={null}
+      onCancel={onCloseIndexDetailModal}
     >
-      <RuleEditList
-        size="small"
-        ruleList={ruleList}
-        combination={ruleCombination}
-        onAppendRule={onAppendRule}
-        onRuleDelete={onRuleDelete}
-        onRuleChange={onRuleChange}
-        onCombinationChange={onCombinationChange}
-        zIndex={1001}
-      />
+      <ChartOptionForm />
+      <ComparableIndexChart />
     </Modal>
   );
-}
-
-export default RuleSetEditModal;
+};
 ```
+
 ### 生命周期内方法、回调（推荐）
+
 可选的注释
+
 - 参数类型
 - 功能
-- 
-``` jsx
+-
+
+```jsx
 class MediaRealtimeContainer extends React.Component {
-    /**
+  /**
    * 等待编辑的待添加规则改变时的回调
    * @param {number} index 发生改变的规则下标
    * @param {'index'|'condition'|'value'} field 发生改变的字段
