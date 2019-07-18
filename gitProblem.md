@@ -81,7 +81,7 @@ $ git checkout commitID
 
 例子：`revert` 掉 master 分支中间的 c 节点
 
-![revert-example.png](http://note.youdao.com/yws/res/11565/WEBRESOURCE6ff3cc8a9b630c69a90eb6798b28b1b1)
+![revert-example.png](http://yun.dui88.com/Pictures/2019-7-18/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-07-18%20%E4%B8%8A%E5%8D%889.35.15.png)
 
 ```shell
 $ git revert a3bf7
@@ -101,11 +101,11 @@ $ git revert --abort
 
 如图所示，想要 `revert` 掉从 dev 分支合并进来的 commit g,该如何操作呢？
 
-![revert-merge-commit.png](http://note.youdao.com/yws/res/11640/WEBRESOURCE304beb55a52f0613ee0e9f05c67f7ea6)
+![revert-merge-commit.png](http://yun.dui88.com/Pictures/2019-7-18/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-07-18%20%E4%B8%8A%E5%8D%8810.37.56.png)
 
 当我们直接 `revert`,会出现以下的提示
 
-![cant-revert-directly.png](http://note.youdao.com/yws/res/11644/WEBRESOURCE447f892b364004e27605b41d901ebb53)
+![cant-revert-directly.png](http://yun.dui88.com/Pictures/2019-7-18/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-07-18%20%E4%B8%8A%E5%8D%8810.40.20.png)
 
 大致意思是：`a8d08 commit` 是一个合并节点，在 `revert` 操作时需要带上 `-m` 选项。
 
