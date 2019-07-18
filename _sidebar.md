@@ -7,6 +7,7 @@
 - [异步](./asynchronous.md)
 - [ES6 实践](./es6.md)
 - [Git 提交信息](./git.md)
+- [Git 简介及常见问题的解决方法](./gitProblem.md)
 - [Mobx 与 React](./mobxReact.md)
 - [代码复用(WIP)](./codeReuse.md)
 - [Code review(TODO)](./codeReview.md)
